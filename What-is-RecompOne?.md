@@ -1,0 +1,1 @@
+todo cool nice thingy wiki for thingies idk im too tired
