@@ -27,7 +27,7 @@ Two folders must stay out of version control:
 - `disc/` holds copyrighted game data.
 - `generated/` holds recompiled game code, which is derived from that data. this may be subject to copyright, you should regenerate it from the disc to create a build (or automate this via ci/cd) instead of committing it
 
-you have toa dd both to `.gitignore`
+You have to add both to `.gitignore`
 
 ## The config file
 
