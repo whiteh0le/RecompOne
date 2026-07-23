@@ -137,7 +137,7 @@ This writes C# into `generated/`. Then build your project:
 dotnet build MyPort.csproj
 ```
 
-The entry point is small, the recompiler will generate one if this doesnt exists, this also works for hooking patches and etc:
+The entry point is small, the recompiler will generate one if this doesnt exists, this also works for hooking custom stuff and etc:
 
 ```csharp
 using RecompOne.Runtime.Memory;
