@@ -58,7 +58,7 @@ other useful fields:
 - `ignored` addresses to skip
 - `linearSweep` find functions by scanning, when the map is incomplete, be aware that this can read data as code, use with care)
 - `debug` makes the recompiler generate prints for each function so you can know exactly what function path was taken at any point
-- `functions[]` addresses for functions that the recompiler didnt correctly find
+- `functions[]` explicit addresses for functions to be recompiled
 
 ### Overlays
 
