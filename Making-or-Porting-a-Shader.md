@@ -128,7 +128,7 @@ void main()
 
 of a varying depends on the texture coordinate rather than only on uniforms, recompute it from `vUv`, this should work
 
-**Helper functions that lived in the vertex stage.** Copy them over verbatim, they usually only call each other
+**Helper functions that lived in the vertex stage.** Copy them over verbatim to your shader
 
 **Output wrappers.** some shaders write through a struct, replace it with a plain write to `oColor`
 
