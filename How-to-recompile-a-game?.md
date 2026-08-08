@@ -1,5 +1,3 @@
-This page shows how to set up a port from scratch
-
 ## Requirements
 
 - dotnet 10 SDK
@@ -205,4 +203,4 @@ Patches are part of your project, so they compile into the game binary. be aware
 
 ## Next steps
 
-- [How to Make a Mod](https://github.com/BlackLabelHQ/RecompOne/wiki/How-to-Make-a-Mod%3F), how to write mods for a finished port
+- [How to Make a Mod](https://github.com/BlackLabelHQ/RecompOne/wiki/Making-a-Mod), how to write mods for a finished port
