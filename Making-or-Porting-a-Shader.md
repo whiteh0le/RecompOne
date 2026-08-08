@@ -157,3 +157,7 @@ the crt-geom shader that ships with the mod was ported this way, read it side by
 ## Licensing
 
 Shaders carry licenses, crt-geom is GPL, many others are too. If you ship a port of someone else's shader, keep the original header comment and credit the author, there is a `license` field in `settings.json` for this, only ship shaders that the license allow.
+
+
+### note
+verbatim = "in the exact same words as the original content"
