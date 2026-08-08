@@ -88,7 +88,7 @@ uniform float strength;
 uniform float enableThing;
 ```
 
-A uniform that is in the json but not in the shader is ignored, no error. That means a typo in `uniform` fails silently, check the name if a parameter seems to do nothing
+A uniform that is in the json but not in the shader is ignored, no error. That means a typo in `uniform` will fail with no warns, check the name if a parameter seems to do nothing!
 
 ## Iterating
 
@@ -114,7 +114,7 @@ Then map the names. The cleanest way is a block of defines at the top, so the bo
 #define COMPAT_TEXTURE texture
 ```
 
-`InputSize` and `TextureSize` are the same value here, the frame recompone hands for you has no padding around it
+`InputSize` and `TextureSize` are the same value here, the frame RecompOne hands for you has no padding around it
 
 Some of the things usually need real edits:
 
