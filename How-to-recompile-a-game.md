@@ -82,13 +82,13 @@ for overlays that are not plain files on the disc, use `lba`, `offset`, `skip`, 
 
 ## Function maps
 
-The recompiler needs to know where functions start and if possible what they are called. It reads this from a **function map** wich is a JSON file that maps addresses and names
+The recompiler needs to know where functions start and if possible what they are called. It reads this from a **function map** which is a JSON file that maps addresses and names
 
 here you have two options (see bellow)
 
 ### Use a decomp ELF directly
 
-Point `elf` and/or `map`(elfs are preferable) at the decomp output, the recompiler reads them at recompile time, this is the simplest path, but it teis your project to the decomp
+Point `elf` and/or `map`(elfs are preferable) at the decomp output, the recompiler reads them at recompile time, this is the simplest path, but it ties your project to the decomp
 
 ```json
 { "elf": "../mygame-decomp/mygame.elf", "map": "../mygame-decomp/mygame.map" }
@@ -108,7 +108,7 @@ After this your project builds from the committed maps alone
 
 ### No decomp is available
 
-In case the game you want to target has no decomp availbale the recompiler can find function boundaries by scanning the code itself. You have two ways to use it
+In case the game you want to target has no decomp available, the recompiler can find function boundaries by scanning the code itself. You have two ways to use it
 
 The first is `linearSweep` in the config, the recompiler scans on every run. The second is generating a function map from that same scan, so you commit the result and stop scanning at recompile time:
 
@@ -122,17 +122,17 @@ Prefer generating the map. it is faster, the result is stable between runs, and 
 
 Either way you get generic names and no automatic SDK detection, so you must route SDK calls to the runtime by hand (see below)
 
-LinearSweep can also be used in cases where a decomp does exist but an overlay havent been decomped yet
+LinearSweep can also be used in cases where a decomp does exist but an overlay haven't been decompiled yet
 
 Be aware that a scan can read data as code, so check the result if an overlay behaves oddly
 
 ## SDK functions
 
-Games call the PSYQ SDK (libgpu, libpad, libspu) the runtime reimplements somme of these. When your function map has the real SDK names, the recompiler recognizes them and routes each call to the runtime automatically.
+Games call the PSYQ SDK (libgpu, libpad, libspu) the runtime reimplements some of these. When your function map has the real SDK names, the recompiler recognizes them and routes each call to the runtime automatically.
 
-If you use `linearSweep` or an incomplete map, the SDK names are missing, you need to map each SDK adress to its runtime counterpart yourself, using `patches` with a `replace` that targets the runtime function
+If you use `linearSweep` or an incomplete map, the SDK names are missing, you need to map each SDK address to its runtime counterpart yourself, using `patches` with a `replace` that targets the runtime function
 
-Prefer a named map if avaible. it removes this work
+Prefer a named map if available. it removes this work
 
 ## Recompiling
 
@@ -149,7 +149,7 @@ This writes C# into `generated/`. Then build your project:
 dotnet build MyPort.csproj
 ```
 
-The entry point is small, the recompiler will generate one if this doesnt exists, this also works for hooking custom stuff and etc:
+The entry point is small, the recompiler will generate one if this doesn't exists, this also works for hooking custom stuff and etc:
 
 ```csharp
 using RecompOne.Runtime.Memory;
@@ -197,7 +197,7 @@ Wire it with a `patches` entry:
 - `mode`:
   - `pre` runs before the function. use `bool` and return `false` to skip the original, if it's void it acts like a true returning function.
   - `post` runs after the function.
-  - `replace` replaces the function completly
+  - `replace` replaces the function completely
 
 Patches are part of your project, so they compile into the game binary. be aware that changing a patch rebuilds only the binary while changing the config needs a rerun on the recompiler to apply it.
 
