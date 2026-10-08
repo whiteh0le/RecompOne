@@ -34,7 +34,7 @@ every `.cs` file under the mod folder is compiled, `source/` is jst a convention
 
 Fields:
 
-- `id` unique id, mods are keyed by it. duplicated ids are skipped
+- `id` unique id, mods are keyed by it. Duplicated ids are skipped
 - `name` shown in the mods panel
 - `dependencies` ids of mods that must load before this one
 
@@ -91,9 +91,9 @@ public class MyMod : IMod
 
 the three attributes you have to know, them take the overlay and the function name (or address)
 
-- `[PreHook(overlay, function)]` runs before the function. use `bool` and return `false` to skip the original, if it is void it acts like a true returning method
+- `[PreHook(overlay, function)]` runs before the function. Use `bool` and return `false` to skip the original, if it is void it acts like a true returning method
 - `[PostHook(overlay, function)]` runs after the function
-- `[Replace(overlay, function)]` replaces the function. it can also optionally take a `Action<CpuContext, IMemory>` parameter to call the original when you want to
+- `[Replace(overlay, function)]` replaces the function. It can also optionally take a `Action<CpuContext, IMemory>` parameter to call the original when you want to
 
 ```csharp
 [Replace("dra", "SomeFunction")]
@@ -147,7 +147,7 @@ a port can declare its own events, so always check what the target port exposes
 
 ## Settings
 
-`DrawSettings` is drawn inside the mods panel, use it for options. you have to make them persist yourself with the runtime config:
+`DrawSettings` is drawn inside the mods panel, use it for options. You have to make them persist yourself with the runtime config:
 
 ```csharp
 using ImGuiNET;
@@ -177,7 +177,7 @@ Ideally prefix your keys with the mod id so two mods never collide
 
 Hooks give you a `CpuContext` and an `IMemory`, which means raw addresses, that works, but it is verbose and every mod ends up rediscovering the same offsets
 
-A port can ship wrappers to hide that, and mods can use them directly. this is very worth doing and it is the difference between a mod being readable and being a miserable pile of magic numbers
+A port can ship wrappers to hide that, and mods can use them directly. This is very worth doing and it is the difference between a mod being readable and being a miserable pile of magic numbers
 
 Reading the player's hp without wrappers means knowing the address and the width: (following example uses SymphonyRecomp wraper as an example)
 

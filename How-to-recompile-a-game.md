@@ -2,11 +2,11 @@
 
 - dotnet 10 SDK
 - The game disc as a `.cue`
-- Function names for the game. a decompilation project is the easiest source. Without one, the recompiler can still find functions, but you do more work by hand (see [Function maps](#function-maps)).
+- Function names for the game. A decompilation project is the easiest source. Without one, the recompiler can still find functions, but you do more work by hand (see [Function maps](#function-maps)).
 
 ## Project layout
 
-A port lives in its **own folder**, not in RecompOne's folder. RecompOne is just a submodule of your project. you have to reference the runtime from your project.
+A port lives in its **own folder**, not in RecompOne's folder. RecompOne is just a submodule of your project. You have to reference the runtime from your project.
 
 ```
 MyPort/
@@ -23,7 +23,7 @@ MyPort/
 Two folders must stay out of version control:
 
 - `disc/` holds copyrighted game data.
-- `generated/` holds recompiled game code, which is derived from that data. this may be subject to copyright, you should regenerate it from the disc to create a build (or automate this via ci/cd) instead of committing it
+- `generated/` holds recompiled game code, which is derived from that data. This may be subject to copyright, you should regenerate it from the disc to create a build (or automate this via ci/cd) instead of committing it
 
 You have to add both to `.gitignore`
 
@@ -51,10 +51,10 @@ Fields:
 - `overlays` extra code files the game loads at runtime.
 - `patches` hooks into game functions (see [Patches](#patches)).
 
-other useful fields: 
-- `stubs` functions to replace with a no-op)
+other useful fields:
+- `stubs` functions to replace with a no-op
 - `ignored` addresses to skip
-- `linearSweep` find functions by scanning, when the map is incomplete, be aware that this can read data as code, use with care). you can also run the scan once and commit its output instead, see [Function maps](#function-maps)
+- `linearSweep` find functions by scanning, when the map is incomplete, be aware that this can read data as code, use with care. You can also run the scan once and commit its output instead, see [Function maps](#function-maps)
 - `debug` makes the recompiler generate prints for each function so you can know exactly what function path was taken at any point
 - `functions[]` explicit addresses for functions to be recompiled
 
@@ -102,7 +102,7 @@ You do not have to depend on the decomp at recompile time, you can generate a fu
 dotnet run --project RecompOne.Recompiler --generate-function-file -elf mygame.elf -map mygame.map -out funcmaps/main.json
 ```
 
-Use `-rebase <hex>` if the overlay loads at a different address than the ELF assumes. generate one file per overlay.
+Use `-rebase <hex>` if the overlay loads at a different address than the ELF assumes. Generate one file per overlay.
 
 After this your project builds from the committed maps alone
 
@@ -118,7 +118,7 @@ dotnet run --project RecompOne.Recompiler -c Release -- --generate-function-file
 
 `-linear-sweep` needs `-disc`, `-base`, and either `-file` (the path inside the disc) or `-lba <n>`. The same layout arguments the config uses are available here: `-offset`, `-skip`, `-size`, `-decrypt` and `-rebase`. generate one file per overlay.
 
-Prefer generating the map. it is faster, the result is stable between runs, and you can rename entries by hand as you identify them, committing the names as you go. The recompiler matches a patch on `OVERLAY_FunctionName` too, so a name like `OVL_HitDetection` is picked up by a patch that targets `HitDetection` on any overlay
+Prefer generating the map. It is faster, the result is stable between runs, and you can rename entries by hand as you identify them, committing the names as you go. The recompiler matches a patch on `OVERLAY_FunctionName` too, so a name like `OVL_HitDetection` is picked up by a patch that targets `HitDetection` on any overlay
 
 Either way you get generic names and no automatic SDK detection, so you must route SDK calls to the runtime by hand (see below)
 
@@ -132,7 +132,7 @@ Games call the PSYQ SDK (libgpu, libpad, libspu) the runtime reimplements some o
 
 If you use `linearSweep` or an incomplete map, the SDK names are missing, you need to map each SDK address to its runtime counterpart yourself, using `patches` with a `replace` that targets the runtime function
 
-Prefer a named map if available. it removes this work
+Prefer a named map if available. It removes this work
 
 ## Recompiling
 
@@ -195,11 +195,11 @@ Wire it with a `patches` entry:
 - `function` the function name (or use `address` with a hex value).
 - `target` the fully qualified C# method.
 - `mode`:
-  - `pre` runs before the function. use `bool` and return `false` to skip the original, if it's void it acts like a true returning function.
+  - `pre` runs before the function. Use `bool` and return `false` to skip the original, if it's void it acts like a true returning function.
   - `post` runs after the function.
   - `replace` replaces the function completely
 
-Patches are part of your project, so they compile into the game binary. be aware that changing a patch rebuilds only the binary while changing the config needs a rerun on the recompiler to apply it.
+Patches are part of your project, so they compile into the game binary. Be aware that changing a patch rebuilds only the binary while changing the config needs a rerun on the recompiler to apply it.
 
 ## Next steps
 

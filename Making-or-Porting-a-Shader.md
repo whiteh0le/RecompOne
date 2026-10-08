@@ -15,7 +15,7 @@ drop the folder in, press Rescan in the mod settings, and it shows up in the dro
 
 ## The fragment shader
 
-The shader is a single fragment shader that runs over the finished frame. the runtime provides the vertex stage and these uniforms bellow
+The shader is a single fragment shader that runs over the finished frame. The runtime provides the vertex stage and these uniforms bellow
 
 ```glsl
 #version 330 core
@@ -73,7 +73,7 @@ each parameter need a `uniform` that matches a `uniform float` declared in the s
 { "uniform": "strength", "default": 0.5, "value": 0.8 }
 ```
 
-`min`, `max`, `step` and `type` are not used yet, they are there for a future settings ui. as of now you edit the json by hand
+`min`, `max`, `step` and `type` are not used yet, they are there for a future settings ui. As of now you edit the json by hand
 
 Parameters are declared in the shader as plain floats, there are no bools or ints so:
 
@@ -88,7 +88,7 @@ A uniform that is in the json but not in the shader is ignored, no error so that
 
 editing a shader does not need to restart the game, change the `.frag` or the `settings.json`, then press Reload in the mod settings and it recompiles from disk and auto-aplies
 
-if the shader fail to compile, the error from the driver is shown in red in the mod settings. so fix and press Reload again
+if the shader fail to compile, the error from the driver is shown in red in the mod settings. So fix and press Reload again
 
 ## Porting an existing shader
 
@@ -150,7 +150,7 @@ becomes
 { "uniform": "CRTgamma", "name": "Target Gamma", "default": 2.4, "min": 0.1, "max": 5.0, "step": 0.1 }
 ```
 
-Keep every parameter, even the ones you do not plan to expose. they are already the shader's defaults and leaving them out means the uniform stays at zero!
+Keep every parameter, even the ones you do not plan to expose. They are already the shader's defaults and leaving them out means the uniform stays at zero!
 
 the crt-geom shader that ships with the mod was ported this way, read it side by side with the libretro original if you get stuck, this can help you understanding RecompOne's shader system!
 
