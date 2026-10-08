@@ -98,7 +98,7 @@ Point `elf` and/or `map`(elfs are preferable) at the decomp output, the recompil
 
 You do not have to depend on the decomp at recompile time, you can generate a function map JSON once, commit it, and point `funcMap` at it:
 
-```
+```sh
 dotnet run --project RecompOne.Recompiler --generate-function-file -elf mygame.elf -map mygame.map -out funcmaps/main.json
 ```
 
@@ -112,7 +112,7 @@ In case the game you want to target has no decomp available, the recompiler can 
 
 The first is `linearSweep` in the config, the recompiler scans on every run. The second is generating a function map from that same scan, so you commit the result and stop scanning at recompile time:
 
-```
+```sh
 dotnet run --project RecompOne.Recompiler -c Release -- --generate-function-file -linear-sweep -disc ../disc/MyGame.cue -base 0x800A0000 -file OVL.BIN -out funcmaps/ovl.json
 ```
 
@@ -138,14 +138,14 @@ Prefer a named map if available. it removes this work
 
 Run the recompiler on your config:
 
-```
+```sh
 dotnet build RecompOne.Recompiler -c Release
 dotnet run --project RecompOne.Recompiler -c Release --no-build -- config/mygame.json
 ```
 
 This writes C# into `generated/`. Then build your project:
 
-```
+```sh
 dotnet build MyPort.csproj
 ```
 
